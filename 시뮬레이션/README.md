@@ -408,6 +408,55 @@ int main()
 }
 ```
 
+# 문제
+https://inha.codetree.ai/missions/5/problems/comfortable-state-on-the-grid/submissions
+# 풀이
+dx, dy, InRange()를 이용해서 색칠할 때는 1을 넣고 그외에는 0으로 색칠 유무를 구분하도록 하여 문제를 해결했다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 101
+int arr[MAX][MAX];
+int dx[]={0,1,0,-1}, dy[]={1,0,-1,0};
+
+bool InRange(int x, int y, int n){
+    return (0<x&&x<=n&&0<y&&y<=n);
+}
+
+int main() {
+    int n,m;
+    cin>>n>>m;
+    for(int i=0; i<m; i++){
+        int x,y;
+        cin>>y>>x;
+        arr[y][x]=1;
+        int num=0;
+        for(int j=0; j<4; j++){
+            int nx = x +dx[j], ny = y + dy[j];
+            if(InRange(nx,ny,n)&&arr[ny][nx]==1)
+                num+=1;
+        }
+        if(num==3)
+            cout<<"1"<<'\n';
+        else
+            cout<<"0"<<'\n';
+    }
+    return 0;
+}
+```
+
+# 문제
+
+# 풀이
+
+# 코드
+```
+
+```
+
+
 
 
 
