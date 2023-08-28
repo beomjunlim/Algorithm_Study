@@ -535,6 +535,58 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/snail-number-square-2/submissions
+# 풀이
+dx, dy를 이용하여 다음 이동할 경우를 계산하고, InRange()를 이용하여 격자 내인지를 파악한다.  
+먼저 이동을 시키고 이를 만족하지 못할 경우 dir_num을 바꿔준다.  그러고 i값을 넣어준다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 101
+
+int arr[MAX][MAX];
+int dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};
+
+bool InRange(int x, int y, int n, int m)
+{
+  return (0 < x && x <= m && 0 < y && y <= n);
+}
+
+int main()
+{
+  int n, m;
+  cin >> n >> m;
+
+  int x = 1, y = 1;
+  arr[y][x] = 1;
+  int dir_num = 0;
+  for (int i = 2; i <= n * m; i++)
+  {
+    int nx = x + dx[dir_num], ny = y + dy[dir_num];
+    if (arr[ny][nx] != 0 || !InRange(nx, ny, n, m))
+    {
+      dir_num = (dir_num + 1) % 4;
+    }
+    x = x + dx[dir_num];
+    y = y + dy[dir_num];
+    arr[y][x] = i;
+  }
+
+  for (int i = 1; i <= n; i++)
+  {
+    for (int j = 1; j <= m; j++)
+    {
+      cout << arr[i][j] << " ";
+    }
+    cout << '\n';
+  }
+  return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
