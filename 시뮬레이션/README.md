@@ -587,6 +587,55 @@ int main()
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/snail-alphabet-square/description
+# 풀이
+char형 배열을 선언하고 초기값은 null 값이들어가기 때문에 이를 이용해서 방문햇는지 아닌지 확인한다.  
+대문자 Z까지 갔으면 다시 A부터 시작하므로 이를 잘 생각해서 코드를 작성한다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 101
+char arr[MAX][MAX];
+int dx[] = {0, 1, 0, -1}, dy[] = {-1, 0, 1, 0};
+int dir_num;
+
+bool InRange(int x, int y, int m, int n)
+{
+  return (0 < x && x <= m && 0 < y && y <= n);
+}
+
+int main()
+{
+  int n, m;
+  cin >> n >> m;
+  int x = 1, y = 1;
+  arr[y][x] = 65;
+  dir_num = 1;
+  for (int i = 1; i < n * m; i++)
+  {
+    int nx = x + dx[dir_num], ny = y + dy[dir_num];
+    if (arr[ny][nx] != 0 || !InRange(nx, ny, m, n))
+      dir_num = (dir_num + 1) % 4;
+    x = x + dx[dir_num];
+    y = y + dy[dir_num];
+    int num = (i % 26) + 65;
+    arr[y][x] = num;
+  }
+  for (int i = 1; i <= n; i++)
+  {
+    for (int j = 1; j <= m; j++)
+    {
+      cout << arr[i][j] << " ";
+    }
+    cout << '\n';
+  }
+  return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
