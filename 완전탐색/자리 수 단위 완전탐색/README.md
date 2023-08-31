@@ -41,6 +41,35 @@ int main()
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/pair-parentheses-3/submissions
+# 풀이
+완전 탐색을 이용해서 모든 경우를 생각해본다.
+# 코드
+``` 
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  string s;
+  cin >> s;
+
+  int cnt = 0;
+  for (int i = 0; i < s.length(); i++)
+  {
+    for (int j = i + 1; j < s.length(); j++)
+    {
+      if (s[i] == '(' && s[j] == ')')
+        cnt++;
+    }
+  }
+  cout << cnt << '\n';
+  return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
