@@ -70,6 +70,41 @@ int main()
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/cattle-in-a-rowing-up-2/submissions
+# 풀이
+완전탐색이므로 모든 경우를 비교하고 위해 3중 for문을 이용해서 문제를 해결했다.
+# 코드
+``` 
+#include <iostream>
+using namespace std;
+
+#define MAX 101
+int arr[MAX];
+
+int main() {
+    int n;
+    int sum=0;
+    cin>>n;
+    for(int i=1; i<=n; i++){
+        cin>>arr[i];
+    }
+
+    for(int i=1; i<=n-2; i++){
+        for(int j=i+1; j<=n-1; j++){
+            for(int k=j+1; k<=n; k++){
+                if(arr[i]<=arr[j]){
+                    if(arr[j]<=arr[k])
+                        sum+=1;
+                }
+            }
+        }
+    }
+    cout<<sum<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
