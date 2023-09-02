@@ -1,0 +1,29 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+
+int main() {
+    bool sw=false;
+    string a;
+    int num=0;
+    cin>>a;
+    for(int i=0; i<a.length(); i++){
+        if(a[i]=='0'){
+            sw=true;
+            a[i]='1';
+            break;
+        }
+    }
+
+    if(!sw){
+        a[a.length()-1]='0';
+    }
+    
+    for(int i=0; i<a.length(); i++){
+        if(a[i]=='1'){
+             num+=pow(2,a.length()-(i+1));
+        }
+    }
+    cout<<num<<'\n';
+    return 0;
+}
