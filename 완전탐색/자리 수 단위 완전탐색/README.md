@@ -205,3 +205,41 @@ int main() {
 ``` 
 
 ```
+
+# 문제
+https://inha.codetree.ai/missions/5/problems/awkward-digits-2/submissions
+# 풀이
+문제에서 한번은 무조건 바꿔야 한다 했다.  
+따라서 모두 1인 경우에는 for문에서 바뀌는 경우가 없으므로 이를 생각해서 sw를 추가해 주었다.
+# 코드
+``` 
+#include <iostream>
+#include<cmath>
+using namespace std;
+
+int main() {
+    bool sw=false;
+    string a;
+    int num=0;
+    cin>>a;
+    for(int i=0; i<a.length(); i++){
+        if(a[i]=='0'){
+            sw=true;
+            a[i]='1';
+            break;
+        }
+    }
+
+    if(!sw){
+        a[a.length()-1]='0';
+    }
+    
+    for(int i=0; i<a.length(); i++){
+        if(a[i]=='1'){
+             num+=pow(2,a.length()-(i+1));
+        }
+    }
+    cout<<num<<'\n';
+    return 0;
+}
+```
