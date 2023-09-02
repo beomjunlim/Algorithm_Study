@@ -105,6 +105,45 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/best-place-of-13/submissions
+# 풀이
+완전탐색을 이용해서 격자를 기준으로 해서 for문 조건을 변형시켜 문제를 해결했다.
+# 코드
+``` 
+#include <iostream>
+using namespace std;
+
+#define MAX 21
+
+int arr[MAX][MAX];
+
+int main() {
+    int n;
+    int max_num=0;
+    cin>>n;
+
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    int num;
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n-2; j++){
+            num=0;
+            num+=(arr[i][j]+arr[i][j+1]+arr[i][j+2]);
+            if(max_num<num){
+                max_num=num;
+            }
+        }
+    }
+    cout<<max_num<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
