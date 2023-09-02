@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 16
+char arr[MAX][MAX];
+
+int r,c,x,y;
+
+int CheckMove(int i, int j){
+    int num=0;
+    for(int a=i+1; a<r; a++){
+        for(int b=j+1; b<c; b++){
+            if(arr[i][j]!=arr[a][b]){
+                num+=1;
+            }
+        }
+    }
+    return num;
+}
+
+
+
+int main() {
+    int sum=0;
+    cin>>r>>c;
+
+    for(int i=1; i<=r; i++){
+        for(int j=1; j<=c; j++){
+            cin>>arr[i][j];
+        }
+    }
+    x=y=1;
+    for(int i=2; i<r; i++){
+        for(int j=2; j<c; j++){
+            if(arr[x][y]!=arr[i][j]){
+                sum+=CheckMove(i,j);
+            }
+        }
+    }
+    if(arr[x][y]==arr[r][c])
+        cout<<0<<'\n';
+    else
+        cout<<sum<<'\n';
+    return 0;
+}
