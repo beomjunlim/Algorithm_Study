@@ -144,6 +144,60 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/on-the-checkboard-2/submissions
+# 풀이
+퐁당퐁당 이런식으로 진행하는데 시작과 도착 지점이 같은 색인 경우는 어떤 경우에서도 조건을 만족 못한다.  
+이 경우를 생각하지 못했다.
+# 코드
+``` 
+#include <iostream>
+using namespace std;
+
+#define MAX 16
+char arr[MAX][MAX];
+
+int r,c,x,y;
+
+int CheckMove(int i, int j){
+    int num=0;
+    for(int a=i+1; a<r; a++){
+        for(int b=j+1; b<c; b++){
+            if(arr[i][j]!=arr[a][b]){
+                num+=1;
+            }
+        }
+    }
+    return num;
+}
+
+
+
+int main() {
+    int sum=0;
+    cin>>r>>c;
+
+    for(int i=1; i<=r; i++){
+        for(int j=1; j<=c; j++){
+            cin>>arr[i][j];
+        }
+    }
+    x=y=1;
+    for(int i=2; i<r; i++){
+        for(int j=2; j<c; j++){
+            if(arr[x][y]!=arr[i][j]){
+                sum+=CheckMove(i,j);
+            }
+        }
+    }
+    if(arr[x][y]==arr[r][c])
+        cout<<0<<'\n';
+    else
+        cout<<sum<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
