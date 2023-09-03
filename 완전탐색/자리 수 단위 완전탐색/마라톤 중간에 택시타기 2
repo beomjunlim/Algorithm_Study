@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+int main()
+{
+  int n, x, y;
+  int sum;
+  int min_sum = INT_MAX;
+  cin >> n;
+  vector<pair<int, int>> v(n);
+
+  for (int i = 0; i < n; i++)
+  {
+    int a, b;
+    cin >> a >> b;
+
+    v[i].first = a;
+    v[i].second = b;
+  }
+
+  for (int i = 1; i < n - 1; i++)
+  {
+    x = y = 0;
+    sum = 0;
+    for (int j = 1; j < n; j++)
+    {
+      if (i != j)
+      {
+        sum += abs(v[x].first - v[j].first);
+        sum += abs(v[y].second - v[j].second);
+        x = y = j;
+      }
+    }
+    if (min_sum > sum)
+    {
+      min_sum = sum;
+    }
+  }
+  cout << min_sum << '\n';
+  return 0;
+}
