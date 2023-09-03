@@ -451,6 +451,64 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/escaping-carry-2/submissions
+# 풀이
+문제 조건을 보고 모든 경우를 다 계산하는 방법으로 푸는 문제이다.
+# 코드
+``` 
+#include <iostream>
+#include<climits>
+using namespace std;
+
+#define MAX 20
+int arr[MAX];
+bool CheckCarry(int i, int j, int k) {
+    if(arr[i]%10+arr[j]%10+arr[k]%10>=10)
+        return true;
+    if(arr[i]%100+arr[j]%100+arr[k]%100>=100)
+        return true;
+    if(arr[i]%1000+arr[j]%1000+arr[k]%1000>=1000)
+        return true;
+    if(arr[i]%10000+arr[j]%10000+arr[k]%10000>=10000)
+        return true;
+    else
+        return false;
+
+}
+
+int main() {
+    int n;
+    int max_sum=INT_MIN;
+    cin>>n;
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+
+    for(int i=0; i<n-2; i++){
+        
+        for(int j=i+1; j<n-1; j++){
+            for(int k=j+1; k<n; k++){
+                int sum=0;
+                if(!CheckCarry(i,j,k)){
+                    sum+=arr[i]+arr[j]+arr[k];
+                    if(max_sum<sum){
+                        max_sum=sum;
+                    }
+                }
+            }
+        }
+    }
+    if(max_sum==INT_MIN){
+        cout<<-1<<'\n';
+    }
+    else {
+        cout<<max_sum<<'\n';
+    }
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
