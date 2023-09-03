@@ -399,6 +399,58 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/c-o-w-2/submissions
+# 풀이
+C가 나오고 나서 O를 찾는 함수를 호출하고 O를 찾는 함수에서 W를 찾는 함수를 호출하는 식으로 완전 탐색을 진행한다.
+# 코드
+``` 
+#include <iostream>
+using namespace std;
+
+#define MAX 100
+char arr[MAX];
+int n;
+
+int findW(int j){
+    int num=0;
+    for(int k=j+1; k<n; k++){
+        if(arr[k]=='W'){
+            num+=1;
+        }
+    }
+    return num;
+}
+
+int findO(int i){
+    int num=0;
+    for(int j=i+1; j<n-1; j++){
+        if(arr[j]=='O'){
+            num+=findW(j);
+        }
+    }
+    return num;
+}
+
+
+int main() {
+
+    int sum=0;
+    cin>>n;
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+
+    for(int i=0; i<n-2; i++){
+        if(arr[i]=='C'){
+            sum+=findO(i);
+        }
+    }
+    cout<<sum<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
