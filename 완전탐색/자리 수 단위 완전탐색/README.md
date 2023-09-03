@@ -198,15 +198,6 @@ int main() {
 ```
 
 # 문제
-
-# 풀이
-
-# 코드
-``` 
-
-```
-
-# 문제
 https://inha.codetree.ai/missions/5/problems/awkward-digits-2/submissions
 # 풀이
 문제에서 한번은 무조건 바꿔야 한다 했다.  
@@ -242,4 +233,64 @@ int main() {
     cout<<num<<'\n';
     return 0;
 }
+```
+
+# 문제
+https://inha.codetree.ai/missions/5/problems/taking-a-taxi-in-the-middle-of-the-marathon-2/submissions
+# 풀이
+시작 도착점을 제외하고 제외할 점을 하나씩 찾고, 그 다음 지점을 x,y에 저장하며 계산한다.
+# 코드
+``` 
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+int main()
+{
+  int n, x, y;
+  int sum;
+  int min_sum = INT_MAX;
+  cin >> n;
+  vector<pair<int, int>> v(n);
+
+  for (int i = 0; i < n; i++)
+  {
+    int a, b;
+    cin >> a >> b;
+
+    v[i].first = a;
+    v[i].second = b;
+  }
+
+  for (int i = 1; i < n - 1; i++)
+  {
+    x = y = 0;
+    sum = 0;
+    for (int j = 1; j < n; j++)
+    {
+      if (i != j)
+      {
+        sum += abs(v[x].first - v[j].first);
+        sum += abs(v[y].second - v[j].second);
+        x = y = j;
+      }
+    }
+    if (min_sum > sum)
+    {
+      min_sum = sum;
+    }
+  }
+  cout << min_sum << '\n';
+  return 0;
+}
+```
+
+# 문제
+
+# 풀이
+
+# 코드
+``` 
+
 ```
