@@ -363,6 +363,42 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/two-non-adjacent-numbers/submissions
+# 풀이
+기본적인 완전 탐색을 이용하여 문제를 해결했다.
+# 코드
+``` 
+#include <iostream>
+#include<climits>
+using namespace std;
+
+#define MAX 100
+int arr[MAX];
+
+int main() {
+    int n,sum;
+    int max_sum=INT_MIN;
+    cin>>n;
+
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+
+    for(int i=0; i<n-2; i++){
+        for(int j=i+2; j<n; j++){
+            sum=0;
+            sum+=(arr[i]+arr[j]);
+            if(max_sum<sum){
+                max_sum=sum;
+            }
+        }
+    }
+    cout<<max_sum<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
