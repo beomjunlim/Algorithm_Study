@@ -325,6 +325,44 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/pair-parentheses-2/submissions
+# 풀이
+닫는 괄호를 체크하는 함수를 이용해서 여는 괄호 두개가 연속하고 나온 후 그 다음 닫는 괄호가 두번 연속 나오는 경우를 리턴하는 함수를 만든다.
+# 코드
+``` 
+#include <iostream>
+using namespace std;
+
+string s;
+
+int CheckStr(int i){
+    int num=0;
+    for(int j=i+1; j<s.length()-1; j++){
+        if(s[j]==')'){
+            if(s[j+1]==')')
+                num+=1;
+        }
+    }
+    return num;
+}
+
+int main() {
+    int num=0;
+    cin>>s;
+
+    for(int i=0; i<s.length()-3; i++){
+        if(s[i]=='('){
+            if(s[i+1]=='('){
+                num+=CheckStr(i+1);
+            }
+        }
+    }
+    cout<<num<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
