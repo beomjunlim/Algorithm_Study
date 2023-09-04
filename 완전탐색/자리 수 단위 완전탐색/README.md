@@ -582,6 +582,55 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/find-hidden-words-2/submissions
+# 풀이
+L 글자를 기준으로 이동할 수 있는 모든 경우의 수를 계산하며 LEE가 몇번 나오는지 구한다.
+# 코드
+``` 
+#include <iostream>
+using namespace std;
+
+#define MAX 51
+char arr[MAX][MAX];
+
+int dx[]={0,1,1,1,0,-1,-1,-1}, dy[]={-1,-1,0,1,1,1,0,-1};
+
+int checkLEE(int i, int j){
+    int num=0;
+    for(int k=0; k<8; k++){
+        int nx = j+ dx[k];
+        int ny = i + dy[k];
+        if(arr[ny][nx]=='E'){
+            if(arr[ny+dy[k]][nx+dx[k]]=='E')
+                num+=1;
+        }
+    }
+    return num;
+}
+
+int main() {
+    int n,m;
+    int num=0;
+    cin>>n>>m;
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=m; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=m; j++){
+            if(arr[i][j]=='L'){
+                num+=checkLEE(i,j);
+            }
+        }
+    }
+    cout<<num<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
