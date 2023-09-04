@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 20
+int arr[MAX][MAX];
+
+int dx[] = {1, 0, 1,-1};
+int dy[] = {0, 1, 1,1};
+
+bool InRange(int x, int y) {
+    return (1 <= x && x <= 19 && 1 <= y && y <= 19);
+}
+
+bool CheckNum(int i, int j) {
+    int curNum = arr[i][j];
+
+    for (int dir = 0; dir < 4; dir++) {
+        int count = 1;
+        int curx = j;
+        int cury = i;
+
+        while (true) {
+            int nx = curx + dx[dir];
+            int ny = cury + dy[dir];
+
+            if (!InRange(nx, ny) || arr[ny][nx] != curNum) {
+                break;
+            }
+
+            count++;
+            curx = nx;
+            cury = ny;
+        }
+
+        if (count == 5) {
+            cout << curNum << '\n';
+            cout << i+2*dy[dir] << " " << j+2*dx[dir] << '\n';
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int main() {
+    for (int i = 1; i <= 19; i++) {
+        for (int j = 1; j <= 19; j++) {
+            cin >> arr[i][j];
+        }
+    }
+
+    for (int i = 1; i <= 19; i++) {
+        for (int j = 1; j <= 19; j++) {
+            if (arr[i][j] == 1 || arr[i][j] == 2) {
+                if (CheckNum(i, j)) {
+                    return 0;
+                }
+            }
+        }
+    }
+
+    cout << "0\n";
+    return 0;
+}
