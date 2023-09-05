@@ -631,6 +631,51 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/best-place-of-13-2/explanation
+# 풀이
+모든 경우를 탐색하며 문제를 해결한다.
+# 코드
+``` 
+#include <iostream>
+#include <climits>
+#include <algorithm>
+using namespace std;
+
+#define MAX 21
+
+int arr[MAX][MAX];
+int n;
+
+int main() {
+    int max_num = INT_MIN;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) { // 첫 번째 반복문 수정
+        for (int j = 0; j < n; j++) { // 두 번째 반복문 수정
+            cin >> arr[i][j];
+        }
+    }
+
+    for (int i = 0; i < n; i++) { // 첫 번째 반복문 수정
+        for (int j = 0; j < n - 2; j++) { // 두 번째 반복문 수정
+            for (int k = 0; k < n; k++) { // 세 번째 반복문 수정
+                for (int l = 0; l < n - 2; l++) { // 네 번째 반복문 수정
+                    if (i == k && abs(j - l) <= 2)
+                        continue;
+                    int cnt1 = arr[i][j] + arr[i][j + 1] + arr[i][j + 2];
+                    int cnt2 = arr[k][l] + arr[k][l + 1] + arr[k][l + 2];
+                    max_num = max(max_num, cnt1 + cnt2);
+                }
+            }
+        }
+    }
+    cout << max_num << '\n';
+    return 0;
+}
+
+```
+
+# 문제
 
 # 풀이
 
