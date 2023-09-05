@@ -676,10 +676,42 @@ int main() {
 ```
 
 # 문제
-
+https://inha.codetree.ai/missions/5/problems/sum-close-to-particular-number/submissions
 # 풀이
-
+처음에 값 입력할 때 모든 값의 합을 계산하고 모든 경우를 계산하며 S와 차이를 계산한다.
 # 코드
 ``` 
+#include <iostream>
+#include<algorithm>
+#include<climits>
+using namespace std;
 
+#define MAX 101
+int arr[MAX];
+
+int main() {
+    int n,s;
+    int sum=0;
+    int min_sum=INT_MAX;
+    cin>>n>>s;
+
+    for(int i=1; i<=n; i++){
+        cin>>arr[i];
+        sum+=arr[i];
+    }
+
+    for(int i=1; i<n; i++){
+        int rest=0;
+        int sum_2=0;
+        for(int j=i+1; j<=n; j++){
+            sum_2=arr[i]+arr[j];
+            rest=sum-sum_2;
+            min_sum=min(abs(s-rest),min_sum);
+        }
+    }
+    cout<<min_sum<<'\n';
+    return 0;
+}
 ```
+
+
