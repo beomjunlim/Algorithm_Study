@@ -75,6 +75,51 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/elemental-mean-value-for-a-particular-interval/submissions
+# 풀이
+평균을 구할 때 타입을 변환시키는게 중요하다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 101
+int arr[MAX];
+
+int main() {
+    int n,i,j,k;
+    int res=0;
+    bool sw;
+    
+    cin>>n;
+    for(i=1; i<=n; i++){
+        cin>>arr[i];
+    }
+
+    for(int i=1; i<=n; i++){
+        for(int j=i; j<=n; j++){
+            int sum=0;
+            for(int k=i; k<=j; k++){
+                sum+=arr[k];
+            }
+
+            double avg = (double)sum/(j-i+1);
+            bool sw=false;
+            for(int k=i; k<=j; k++){
+                if(arr[k]==avg)
+                    sw = true;
+            }
+            if(sw)
+                res+=1;
+        }
+    }
+    
+    cout<<res<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
