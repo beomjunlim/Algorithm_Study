@@ -1,0 +1,44 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+#define MAX 100
+int arr_n[MAX];
+int arr_m[MAX];
+int tmp[MAX];
+
+int main() {
+    int n,m;
+    cin>>n>>m;
+
+    for(int i=0; i<n; i++){
+        cin>>arr_n[i];
+    }
+
+    for(int i=0; i<m; i++){
+        cin>>arr_m[i];
+    }
+    sort(arr_m,arr_m+m);
+
+    int cnt=0;
+
+    for(int i=0; i<=n-m; i++){
+        for(int j=0; j<m; j++){
+            tmp[j]=arr_n[i+j];
+        }
+        sort(tmp,tmp+m);
+
+        bool sw = true;
+
+        for(int j=0; j<m; j++){
+            if(tmp[j]!=arr_m[j]){
+                sw = false;
+                break;
+            }
+        }
+        if(sw)
+            cnt++;
+    }
+    cout<<cnt;
+    return 0;
+}
