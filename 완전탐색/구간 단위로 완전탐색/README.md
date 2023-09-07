@@ -120,6 +120,58 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/beautiful-sequence-2/submissions
+# 풀이
+구간을 정해두고 비교하기 위해 새로운 m 크기 배열에 담아 정렬을 한 다음 m 배열과 똑같은지 확인한다.
+# 코드
+```
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+#define MAX 100
+int arr_n[MAX];
+int arr_m[MAX];
+int tmp[MAX];
+
+int main() {
+    int n,m;
+    cin>>n>>m;
+
+    for(int i=0; i<n; i++){
+        cin>>arr_n[i];
+    }
+
+    for(int i=0; i<m; i++){
+        cin>>arr_m[i];
+    }
+    sort(arr_m,arr_m+m);
+
+    int cnt=0;
+
+    for(int i=0; i<=n-m; i++){
+        for(int j=0; j<m; j++){
+            tmp[j]=arr_n[i+j];
+        }
+        sort(tmp,tmp+m);
+
+        bool sw = true;
+
+        for(int j=0; j<m; j++){
+            if(tmp[j]!=arr_m[j]){
+                sw = false;
+                break;
+            }
+        }
+        if(sw)
+            cnt++;
+    }
+    cout<<cnt;
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
