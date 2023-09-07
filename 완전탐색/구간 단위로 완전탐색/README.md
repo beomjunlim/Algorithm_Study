@@ -172,6 +172,56 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/candy-in-the-basket-2/submissions
+# 풀이
+2차원 배열의 두번째 원소를 기준으로 오름차순을 하는 함수를 직접 구현해서 정렬을 진행하고, 시작 구간을 기준으로 사탕을 비교한다.
+# 코드
+```
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+bool MySort(pair<int,int>&a, pair<int,int>&b){
+    return a.second<b.second;
+}
+
+int main() {
+    int n,k;
+    cin>>n>>k;
+    vector<pair<int,int>> v;
+
+    for(int i=0; i<n; i++){
+        int a,b;
+        cin>>a>>b;
+        v.push_back({a,b});
+    }
+    sort(v.begin(), v.end(), MySort);
+
+    int sum=0;
+    int max_sum=0;
+
+    for(int i=0; i<n; i++){
+        sum=0;
+        int max_n=v[i].second+2*k;
+        for(int j=i; j<n; j++){
+            if(v[j].second<=max_n){
+                sum+=v[j].first;
+            }
+            else {
+                break;
+            }
+        }
+        if(max_sum<sum){
+            max_sum=sum;
+        }
+    }
+    cout<<max_sum<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
