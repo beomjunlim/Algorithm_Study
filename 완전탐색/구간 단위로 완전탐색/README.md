@@ -274,10 +274,41 @@ int main() {
 ```
 
 # 문제
-
+https://inha.codetree.ai/missions/5/problems/equalizing-the-height-of-the-field/submissions
 # 풀이
-
+절댓값 함수를 이용해서 높이를 해당 밭과 비교해서 비용에 추가해준다.
 # 코드
 ```
+#include <iostream>
+#include <climits>
+#include <cmath>
+using namespace std;
 
+#define MAX 100
+int arr[MAX];
+
+int main() {
+    int n,h,t;
+    int min_sum=INT_MAX;
+    cin>>n>>h>>t;
+
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+
+    for(int i=0; i<=n-t; i++){
+        int sum=0;
+        sum+=abs(arr[i]-h);
+
+        for(int j=i+1; j<i+t; j++){
+            sum+=abs(arr[j]-h);
+        }
+        if(min_sum>sum)
+            min_sum=sum;
+    }
+    cout<<min_sum<<'\n';
+    return 0;
+}
 ```
+
+
