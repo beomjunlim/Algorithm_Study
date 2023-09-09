@@ -1,0 +1,38 @@
+#include <iostream>
+#include <climits>
+using namespace std;
+
+int arr[6];
+
+int GetDiff(int i,int j,int k){
+    int sum1 = arr[i]+arr[j]+arr[k];
+    int sum2=0;
+    int sum3=0;
+    for(int m=0; m<6; m++){
+        sum3+=arr[m];
+    }
+    sum2 = sum3-sum1;
+    return abs(sum2-sum1);
+}
+
+int main() {
+    int n=6;
+    int min=0;
+    int Min_min=INT_MAX;
+
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+    
+    for(int i=0; i<n-2; i++){
+        for(int j=i+1; j<n-1; j++){
+            for(int k=j+1; k<n; k++){
+                min = GetDiff(i,j,k);
+                if(Min_min> min)
+                    Min_min = min;
+            }
+        }
+    }
+    cout<<Min_min<<'\n';
+    return 0;
+}
