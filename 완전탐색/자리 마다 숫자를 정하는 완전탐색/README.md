@@ -80,6 +80,58 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/5/problems/a-two-way-lock/submissions
+# 풀이
+각 자리수 차이를 계산하는 함수를 만든다.  n을 초과할 경우 1로 다시 돌아가므로 이 경우는 두 수의 차를 이용해서 계산한다.
+# 코드
+```
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int n;
+int arr1[3];
+int arr2[3];
+
+bool GetCase(int i, int j, int k, int arr[]){
+    int a=abs(arr[0]-i);
+    int b=abs(arr[1]-j);
+    int c=abs(arr[2]-k);
+    if(a<=2||a>=(n-2)){
+        if(b<=2||b>=(n-2)){
+            if(c<=2||c>=(n-2))
+                return true;
+            return false;
+        }
+        return false;
+    }
+    return false;
+}
+
+
+int main() {
+    cin>>n;
+    for(int i=0; i<3; i++){
+        cin>>arr1[i];
+    }
+    for(int i=0; i<3; i++){
+        cin>>arr2[i];
+    }
+    int sum=0;
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n; j++){
+            for(int k=1; k<=n; k++){
+                if(GetCase(i,j,k,arr1)||GetCase(i,j,k,arr2))
+                    sum+=1;
+            }
+        }
+    }
+    cout<<sum<<'\n';
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
