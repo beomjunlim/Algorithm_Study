@@ -1,0 +1,63 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+#define MAX 100
+int arr[MAX][MAX];
+int n,m;
+
+bool checkRow(int i){
+    int start=arr[i][0];
+    int num=1;
+    int max_num=1;
+    for(int j=1; j<n; j++){
+        if(arr[i][j]==start)
+            num+=1;
+        else
+            num=1;
+
+        max_num=max(num, max_num);
+        start=arr[i][j];
+    }
+    if(max_num>=m)
+        return true;
+    else
+        return false;
+}
+
+bool checkCol(int i){
+    int start=arr[0][i];
+    int num=1;
+    int max_num=1;
+    for(int j=1; j<n; j++){
+        if(arr[j][i]==start)
+            num+=1;
+        else
+            num=1;
+
+        max_num=max(num, max_num);
+        start=arr[j][i];
+    }
+    if(max_num>=m)
+        return true;
+    else
+        return false;
+}
+
+int main() {
+    cin>>n>>m;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cin>>arr[i][j];
+        }
+    }
+    int sum=0;
+    for(int i=0; i<n; i++){
+        if(checkRow(i))
+            sum+=1;
+        if(checkCol(i))
+            sum+=1;
+    }
+    cout<<sum<<'\n';
+    return 0;
+}
