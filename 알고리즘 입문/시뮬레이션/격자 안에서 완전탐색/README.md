@@ -117,6 +117,70 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/2/problems/tromino/explanation
+# 풀이
+가능한 케이스 두개를 나눠서 함수를 만들어서 경우를 계산하였다.
+# 코드
+```
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+#define MAX 200
+int arr[MAX][MAX];
+int n,m;
+
+bool InRange(int i, int j){
+    return 0<=i&&i<n&&0<=j&&j<m;
+}
+
+int CheckCase1(int i, int j){
+    int num=0;
+    if(InRange(i+1,j)&&InRange(i,j+1)){
+        int min_num=min(arr[i][j], min(arr[i+1][j], min(arr[i][j+1], arr[i+1][j+1])));
+        num=(arr[i][j]+arr[i+1][j]+arr[i][j+1]+arr[i+1][j+1]-min_num);
+    }
+    return num;
+}
+
+int CheckCase2(int i, int j){
+    int num1=0;
+    int num2=0;
+    if(InRange(i+2,j)){
+        num1=(arr[i][j]+arr[i+1][j]+arr[i+2][j]);
+    }
+    if(InRange(i,j+2)){
+        num2=(arr[i][j]+arr[i][j+1]+arr[i][j+2]);
+    }
+    return  max(num1,num2);
+}
+
+int main() {
+
+    cin>>n>>m;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            cin>>arr[i][j];
+        }
+    }
+    int case1=0;
+    int case2=0;
+    int max_num=0;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            case1=CheckCase1(i,j);
+            case2=CheckCase2(i,j);
+            int max_case=max(case1, case2);
+            if(max_num<max_case)
+                max_num = max_case;
+        }
+    }
+    cout<<max_num;
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
