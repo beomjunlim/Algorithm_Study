@@ -181,6 +181,60 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/2/problems/gold-mining/submissions
+# 풀이
+k의 범위가 어떻게 되는지를 잘 생각하고, 함수를 작성해야 한다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 20
+int arr[MAX][MAX];
+int n,m;
+
+int GetArea(int k){
+    return k*k+(k+1)*(k+1);
+}
+
+int GetGold(int i, int j, int k){
+    int gold=0;
+    for(int a=0; a<n; a++){
+        for(int b=0; b<n; b++){
+            if(abs(i-a)+abs(j-b)<=k)
+                gold+=arr[a][b];
+        }
+    }
+    return gold;
+}
+
+int main() {
+    int max_gold=0;
+
+    cin>>n>>m;
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            for(int k=0; k<=2*(n-1); k++){
+                int gold= GetGold(i,j,k);
+                if(gold*m>=GetArea(k))
+                    max_gold = max(max_gold, gold);
+            }
+        }
+    }
+    cout<<max_gold;
+
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
