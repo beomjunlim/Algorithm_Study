@@ -235,6 +235,62 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/2/problems/slanted-rectangle/submissions
+# 풀이
+대각선으로 움직이는 횟수를 정해두고 함수로 들어가서 합을 반환하며 비교한다.
+# 코드
+```
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+#define MAX 21
+int arr[MAX][MAX];
+int n;
+int dx[]={1,-1,-1,1},dy[]={-1,-1,1,1};
+
+bool InRange(int i, int j){
+    return 1<=i&&i<=n&&1<=j&&j<=n;
+}
+
+int GetScore(int y,int x, int k, int l){
+    int move_num[]={k,l,k,l};
+    int sum=0;
+    for(int d=0; d<4; d++){
+        for(int q=0; q<move_num[d]; q++){
+            x+=dx[d];
+            y+=dy[d];
+            if(!InRange(x,y))
+                return 0;
+            sum+=arr[y][x];
+        }
+    }
+    return sum;
+}
+
+int main() {
+    cin>>n;
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    int ans=0;
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n; j++){
+            for(int k=1; k<n; k++){
+                for(int l=1; l<n; l++)
+                    ans = max(ans, GetScore(i,j,k,l));
+            }
+        }
+    }
+    cout<<ans;
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
