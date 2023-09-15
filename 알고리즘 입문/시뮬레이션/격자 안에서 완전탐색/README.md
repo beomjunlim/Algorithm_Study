@@ -291,6 +291,106 @@ int main() {
 ```
 
 # 문제
+https://inha.codetree.ai/missions/2/problems/non-overlapping-two-rectangles/submissions
+# 풀이
+먼저 첫번째 사각형을 완성시키고 두번째 사각형을 만들어서 둘이 겹치는지 확인 후 겹치지않는다면 넓이를 계산하여 최대값을 찾는 형식으로 풀었다.  
+겹치는지 확인하는 함수는 이 칸을 방문한 적이 있는지 확인하며 겹치는지 여부를 확인했다.
+# 코드
+```
+#include <iostream>
+#include <climits>
+using namespace std;
+
+#define MAX 5
+
+int arr[MAX][MAX];
+bool visited[MAX][MAX];
+int n,m;
+
+int checkSum(int x1, int x2, int y1, int y2){
+    int sum=0;
+    for(int i=y1; i<=y2; i++){
+        for(int j=x1; j<=x2; j++){
+            sum+=arr[i][j];
+        }
+    }
+    return sum;
+}
+
+void intializeVisited() {
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            visited[i][j]=false;
+        }
+    }
+}
+
+bool checkArea(int x1, int x2, int y1, int y2, int z1, int z2, int k1, int k2) {
+    intializeVisited();
+    for(int i=y1; i<=y2; i++){
+        for(int j=x1; j<=x2; j++){
+            visited[i][j]=true;
+        }
+    }
+
+    for(int i=k1; i<=k2; i++){
+        for(int j=z1; j<=z2; j++){
+            if(visited[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+
+int MaxArea(int x1, int x2, int y1, int y2){
+    int sum=0;
+    int max_sum=INT_MIN;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            for(int k=i; k<n; k++){
+                for(int l=j; l<m; l++){
+                    if(checkArea(x1,x2,y1,y2,j,l,i,k)){
+                        sum=checkSum(x1,x2,y1,y2)+checkSum(j,l,i,k);
+                        if(max_sum<sum)
+                            max_sum=sum;
+                    }
+                }
+            }
+        }
+    }
+    return max_sum;
+}
+
+
+
+int main() {
+    cin>>n>>m;
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    int sum=0;
+    int max_sum=INT_MIN;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            for(int k=i; k<n; k++){
+                for(int l=j; l<m; l++){
+                    sum=MaxArea(j,l,i,k);
+                    if(max_sum<sum)
+                        max_sum=sum;
+                }
+            }
+        }
+    }
+    cout<<max_sum;
+    return 0;
+}
+```
+
+# 문제
 
 # 풀이
 
