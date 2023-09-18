@@ -94,3 +94,63 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/select-segments-without-overlap/description
+# 풀이
+선분이 겹치는지 좌표를 계산해서 가능한 경우를 계산한다 계산하는 경우에 대해 다시 생각해 봐야겠다.
+# 코드
+```
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int n;
+int ans=0;
+vector<pair<int, int>>v;
+vector<pair<int, int>>w;
+
+bool Overlapped(pair<int, int>a, pair<int, int>b){
+    int ax=a.first;
+    int ay=a.second;
+    int bx=b.first;
+    int by=b.second;
+
+    return (ay<bx||by<ax);
+}
+
+bool Possible(){
+    for(int i=0; i<(int)w.size(); i++){
+        for(int j=i+1; j<(int)w.size(); j++){
+            if(!Overlapped(w[i], w[j]))
+                return false;
+        }
+    }
+    return true;
+}
+
+void Check(int num){
+    if(num==n){
+        if(Possible())
+            ans = max(ans,(int)w.size());
+        return;
+    }
+    w.push_back({v[num].first,v[num].second});
+    Check(num+1);
+    w.pop_back();
+    Check(num+1);
+}
+
+int main() {
+
+    cin>>n;
+    for(int i=0; i<n; i++){
+        int a,b;
+        cin>>a>>b;
+        v.push_back({a,b});
+    }
+    Check(0);
+    cout<<ans;
+    return 0;
+}
+```
