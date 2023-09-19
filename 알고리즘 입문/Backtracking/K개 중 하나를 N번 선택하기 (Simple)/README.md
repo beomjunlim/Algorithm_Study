@@ -154,3 +154,47 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/n-permutations-of-k-with-repetition-under-constraint/submissions
+# 풀이
+연속으로 나오는 경우가 제한되어있으므로 이전 두번 어떤 숫자가 나왔는지 비교하기 위해 if문을 넣는다 하지만 index오류가 발생할 수 있으므로 먼저 indexrk 0보다 적어지는 경우를 제외한다.
+# 코드
+```
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int k, n;
+vector<int> v;
+
+void Print() {
+    for(int i=0; i<v.size(); i++){
+        cout<<v[i]<<" ";
+    }
+    cout<<'\n';
+}
+
+void Check(int num){
+    if(num==n){
+        Print();
+        return;
+    }
+
+    for(int i=1; i<=k; i++){
+        if(v.size()>=2&&i==v[num-1]&&i==v[num-2]){
+            continue;
+        } else{
+            v.push_back(i);
+            Check(num+1);
+            v.pop_back();
+        }
+    }
+}
+
+int main() {
+    cin>>k>>n;
+    Check(0);
+    return 0;
+}
+```
