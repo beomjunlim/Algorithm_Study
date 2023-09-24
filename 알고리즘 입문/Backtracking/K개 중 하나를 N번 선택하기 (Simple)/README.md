@@ -405,7 +405,8 @@ int main() {
 # 문제
 https://inha.codetree.ai/missions/2/problems/choose-m-out-of-n-points/submissions
 # 풀이
-배열에 넣어 거리를 계산하는데 중복되는 부분이 있어 이를 시작점, 그리고 방문했는지 확인하는 배열로 중복 체크하였다.
+배열에 넣어 거리를 계산하는데 중복되는 부분이 있어 이를 시작점, 그리고 방문했는지 확인하는 배열로 중복 체크하였다.  
+방문 체크 배열이 필요 없다. 시작점을 함수 인자로 넘겨주면 해결된다.
 # 코드
 ```
 #include <iostream>
@@ -419,7 +420,6 @@ using namespace std;
 
 vector<pair<int,int>>v;
 vector<pair<int,int>>w;
-bool visited[MAX];
 double ans = 10000000;
 int n,m;
 
@@ -444,13 +444,9 @@ void Check(int num, int start){
     }
 
     for(int i=start; i<n; i++){
-        if(!visited[i]){
-            visited[i]=true;
             w.push_back({v[i].first, v[i].second});
             Check(num+1, i+1);
-            visited[i]=false;
             w.pop_back();
-        }
     }
 }
 
