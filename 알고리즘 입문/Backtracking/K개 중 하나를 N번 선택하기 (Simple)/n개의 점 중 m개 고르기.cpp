@@ -9,7 +9,6 @@ using namespace std;
 
 vector<pair<int,int>>v;
 vector<pair<int,int>>w;
-bool visited[MAX];
 double ans = 10000000;
 int n,m;
 
@@ -34,13 +33,9 @@ void Check(int num, int start){
     }
 
     for(int i=start; i<n; i++){
-        if(!visited[i]){
-            visited[i]=true;
             w.push_back({v[i].first, v[i].second});
             Check(num+1, i+1);
-            visited[i]=false;
             w.pop_back();
-        }
     }
 }
 
