@@ -464,3 +464,48 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/n-permutation/introduction
+# 풀이
+방문했는지 아닌지 bool 배열을 이용해서 확인한다.
+# 코드
+```
+#include <iostream>
+#include <vector>
+using namespace std;
+
+#define MAX 8
+int n;
+vector<int> v;
+bool visited[MAX];
+
+void Print(){
+    for(int i=0; i<n; i++){
+        cout<<v[i]<<" ";
+    }
+    cout<<'\n';
+}
+
+void Check(int num){
+    if(num==n){
+        Print();
+    }
+
+    for(int i=1; i<=n; i++){
+        if(!visited[i]){
+            visited[i] = true;
+            v.push_back(i);
+            Check(num+1);
+            v.pop_back();
+            visited[i] = false;
+        }
+    }
+}
+
+int main() {
+    cin>>n;
+    Check(0);
+    return 0;
+}
+```
