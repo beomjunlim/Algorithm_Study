@@ -554,3 +554,60 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/max-sum-of-numbers/submissions
+# 풀이
+각 행에서 열을 선택하는 방법을 이용해서 행마다 다른 열을 선택하도록 Backtracking을 사용한다.  
+최댓값을 계산할 때는 열을 담은 벡터를 이용해서 계산한다.
+# 코드
+```
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+#define MAX 11
+int n;
+int arr[MAX][MAX];
+bool visited[MAX];
+vector<int> v;
+int max_num=0;
+
+void Check(int num){
+    if(num==n){
+        int sum=0;
+        for(int i=0; i<n; i++){
+            sum += arr[i][v[i]];
+        }
+        max_num = max(max_num, sum);
+    }
+    
+    for(int i=0; i<n; i++){
+        if(!visited[i]){
+            visited[i]=true;
+            v.push_back(i);
+            
+            Check(num+1);
+
+            visited[i]=false;
+            v.pop_back();
+        }
+    }
+}
+
+
+int main() {
+    cin>>n;
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    Check(0);
+    cout<<max_num<<'\n';
+    return 0;
+}
+```
