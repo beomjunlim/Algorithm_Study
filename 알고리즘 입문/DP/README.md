@@ -41,3 +41,29 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/climbing-stairs/submissions
+# 풀이
+계단을 오르는 방식으로 DP 계산방법을 바꿔준다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 1001
+
+int dp[MAX];
+
+int main() {
+    int n;
+    cin>>n;
+    dp[2]=1;
+    dp[3]=1;
+    for(int i=4; i<=n; i++){
+        dp[i]=(dp[i-2]+dp[i-3])%10007;
+    }
+    cout<<dp[n];
+    return 0;
+}
+```
