@@ -128,3 +128,31 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/rectangle-fill-2/submissions
+# 풀이
+점화식을 구해서 DP 문제를 해결했다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 1001
+
+long long dp[MAX];
+
+int main() {
+    int n;
+    cin>>n;
+
+    dp[1]=1;
+    dp[2]=3;
+
+    for(int i=3; i<=n; i++){
+        dp[i] = (dp[i-1]+2*dp[i-2])%10007;
+    }
+    cout<<dp[n];
+    return 0;
+}
+```
