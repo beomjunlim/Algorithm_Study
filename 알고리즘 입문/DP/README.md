@@ -156,3 +156,53 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/maximum-sum-path-in-square/submissions
+# 풀이
+먼저 dp 배열의 초기를 설정하고 점화식을 이용해서 구한다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 100
+
+int arr[MAX][MAX];
+int dp[MAX][MAX];
+int n;
+
+void Initialize(){
+    dp[0][0] = arr[0][0];
+
+    for(int i=1; i<n; i++){
+        dp[i][0] = dp[i-1][0] + arr[i][0];
+    }
+
+    for(int i=1; i<n; i++){
+        dp[0][i] = dp[0][i-1] + arr[0][i];
+    }
+}
+
+int main() {
+    cin>>n;
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    Initialize();
+
+    for(int i= 1; i<n; i++){
+        for(int j=1; j<n; j++){
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + arr[i][j];
+        }
+    }
+    cout<<dp[n-1][n-1];
+
+
+    return 0;
+}
+```
