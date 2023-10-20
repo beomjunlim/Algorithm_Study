@@ -206,3 +206,50 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/minimum-sum-path-in-square/submissions
+# 풀이
+초기 조건을 먼저 설정해주고 움직일 수 있는 경우를 계산하며 최소값으로 채워나간다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 100
+
+int arr[MAX][MAX];
+int dp[MAX][MAX];
+int n;
+
+void Initialize(){
+    dp[0][n-1] = arr[0][n-1];
+    for(int i=1; i<n; i++){
+        dp[i][n-1] = dp[i-1][n-1] + arr[i][n-1];
+    }
+    for(int i=n-2; i>=0; i--){
+        dp[0][i] = dp[0][i+1] + arr[0][i];
+    }
+}
+
+int main() {
+    cin>>n;
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    Initialize();
+
+    for(int i=1; i<n; i++){
+        for(int j=n-2; j>=0; j--){
+            dp[i][j] = min(dp[i-1][j], dp[i][j+1]) + arr[i][j];
+        }
+    }
+
+    cout<<dp[n-1][0];
+    return 0;
+}
+```
