@@ -300,3 +300,50 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/minimax-path-in-square/explanation
+# 풀이
+먼저 초기 조건을 만드는 함수를 만들어주고, 이동할 수 있는 경우의 수 중 작은 경우와 이동한 칸의 수와 비교해서 큰 값으로 dp 배열을 채워나간다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 100
+
+int dp[MAX][MAX];
+int arr[MAX][MAX];
+int n;
+
+void Initialize(){
+    dp[0][0] = arr[0][0];
+
+    for(int i=1; i<n; i++){
+        dp[0][i] = max(dp[0][i-1],arr[0][i]);
+    }
+
+    for(int i=1; i<n; i++){
+        dp[i][0] = max(dp[i-1][0], arr[i][0]);
+    }
+}
+
+int main() {
+    cin>>n;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    Initialize();
+
+    for(int i=1; i<n; i++){
+        for(int j=1; j<n; j++){
+            dp[i][j] = max(min(dp[i-1][j],dp[i][j-1]), arr[i][j]);
+        }
+    }
+    cout<<dp[n-1][n-1];
+    return 0;
+}
+```
