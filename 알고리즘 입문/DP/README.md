@@ -347,3 +347,58 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/longest-increasing-subsequence/submissions
+# 풀이
+도착점을 기준으로 이전에 왔던 지점과 크기를 비교해가며 이전 지점까지의 수열과 계산한다.
+# 코드
+```
+#include <iostream>
+#include <climits>
+#include <algorithm>
+using namespace std;
+
+#define MAX 1000
+
+int arr[MAX+1];
+int dp[MAX+1];
+int n;
+
+void Initialize(){
+    for(int i=0; i<=n; i++){
+        dp[i] = INT_MIN;
+    }
+    dp[0] = 0;
+    arr[0] = 0;
+}
+
+int main() {
+
+    cin>>n;
+
+    for(int i=1; i<=n; i++){
+        cin>>arr[i];
+    }
+
+    Initialize();
+    
+    for(int i=1; i<=n; i++){
+        for(int j=0; j<i; j++){
+            if(arr[j]<arr[i]){
+                dp[i] = max(dp[i], dp[j]+1);
+            }
+        }
+    }
+
+    int ans=0;
+
+    for(int i=0; i<=n; i++){
+        ans = max(ans, dp[i]);
+    }
+
+    cout<<ans;
+
+    return 0;
+}
+```
