@@ -402,3 +402,44 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/longest-decreasing-subsequence/submissions
+# 풀이
+도착 지점까지 감소하는 수열을 하나씩 비교하면 채워나간다.
+# 코드
+```
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+#define MAX 10000
+
+int n;
+int arr[MAX];
+int dp[MAX];
+
+int main() {
+    cin>>n;
+
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+
+    for(int i=0; i<n; i++){
+        dp[i] = 1;
+        for(int j=0; j<i; j++){
+            if(arr[j]>arr[i])
+                dp[i] = max(dp[i], dp[j] + 1);
+        }
+    }
+
+    int ans = 0;
+    for(int i=0; i<n; i++){
+        ans = max(ans, dp[i]);
+    }
+
+    cout<<ans;
+    return 0;
+}
+```
