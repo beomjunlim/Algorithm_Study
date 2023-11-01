@@ -443,3 +443,51 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/maximum-number-of-jumps/submissions
+# 풀이
+조건이 시작지점에서 점프를 해야 하므로 도달할 수 없는 지점은 계산에서 제외시키는 if문을 추가해준다.
+# 코드
+```
+#include <iostream>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+#define MAX 1000
+
+int arr[MAX];
+int dp[MAX];
+int n;
+
+int main() {
+    cin>>n;
+
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+        dp[i] = INT_MIN;
+    }
+
+    dp[0] = 0;
+    
+    for(int i=0; i<n; i++){
+        for(int j=0; j<i; j++){
+            if(dp[j] == INT_MIN)
+                continue;
+            if(arr[j]>=i-j){
+                dp[i] = max(dp[j]+1, dp[i]);
+            }
+        }
+    }
+
+    int ans = 0 ;
+
+    for(int i=0; i<n; i++){
+        ans = max (ans, dp[i]);
+    }
+
+    cout<<ans;
+    return 0;
+}
+```
