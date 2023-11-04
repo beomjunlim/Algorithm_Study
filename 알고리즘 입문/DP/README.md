@@ -593,3 +593,44 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/being-rich-by-working-part-time/explanation
+# 풀이
+입력 순서가 정해져있으므로 비용은 따로 빼줘서 계산을 진행하면 된다.
+# 코드
+```
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+#define MAX 1000
+int n;
+vector<pair<int,int>> v;
+vector<int> pay;
+int dp[MAX];
+
+int main() {
+    cin>>n;
+    
+    for(int i=0; i<n; i++){
+        int s,e,p;
+        cin>>s>>e>>p;
+        v.push_back(make_pair(s,e));
+        pay.push_back(p);
+        dp[i] = p;
+    }
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<i; j++){
+            if(v[i].first>v[j].second){
+                dp[i] = max(dp[i], dp[j]+pay[i]);
+            }
+        }
+    }
+    sort(dp, dp+n);
+    cout<<dp[n-1];
+    return 0;
+}
+```
