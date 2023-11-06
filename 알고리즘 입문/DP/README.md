@@ -683,3 +683,36 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/1-2-5-plus/submissions
+# 풀이
+먼저 자기 자신으로 만들 수 있는 수를 초기화 시켜주고 dp 배열을 업데이트 시켜준다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 1000
+
+int arr[3] = {1,2,5};
+int n;
+int dp[MAX];
+
+int main() {
+    cin>>n;
+    dp[1] = 1;
+    dp[2] = 1;
+    dp[5] = 1;
+
+    for(int i=2; i<=n; i++){
+        for(int j=0; j<3; j++){
+            if(i>arr[j])
+                dp[i] = (dp[i] + dp[i-arr[j]])%10007;
+        }
+    }
+    cout<<dp[n];
+    
+    return 0;
+}
+```
