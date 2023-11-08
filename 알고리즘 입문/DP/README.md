@@ -766,3 +766,45 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/the-sum-of-the-subsequences/submissions
+# 풀이
+배열의 인덱스까지 해당 숫자를 만들 수 있는지 bool 형 배열을 생성하여 확인한다.
+# 코드
+```
+#include <iostream>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+#define MAX 10001
+
+int n,m;
+int arr[MAX];
+bool dp[MAX][MAX];
+
+int main() {
+    cin>>n>>m;
+
+    for(int i=1; i<=n; i++){
+        cin>>arr[i];
+    }
+
+    dp[0][0] = true;
+
+    for(int i=1; i<=n; i++){
+        for(int j=0; j<=m; j++){
+            if(j >=arr[i] && dp[i -1][j -arr[i]])
+                dp[i][j] = true;
+            if(dp[i-1][j])
+                dp[i][j] = true;
+        }
+    }
+    if(dp[n][m])
+        cout<<"Yes";
+    else
+        cout<<"No";
+    return 0;
+}
+```
