@@ -808,3 +808,53 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/knapsack/submissions
+# 풀이
+물건의 번호를 두고 해당 물건까지 포함했을 경우 무게를 업데이트하며 가능한 최대의 가치를 업데이트한다.
+# 코드
+```
+#include <iostream>
+using namespace std;
+
+#define MAX 10001
+int n, m;
+int value[MAX];
+int weight[MAX];
+int dp[MAX][MAX];
+
+int main() {
+    cin >> n >> m;
+
+    for (int i = 1; i <= n; i++) {
+        cin >> weight[i];
+        cin >> value[i];
+    }
+
+    for (int i = 0; i <= m; i++) {
+        dp[i][0] = 0;
+    }
+    for (int j = 0; j <= n; j++) {
+        dp[0][j] = 0;
+    }
+
+    for(int i=1; i<=n; i++){
+        for(int j=0; j<=m; j++){
+            if(j>=weight[i])
+                dp[i][j] = max(dp[i-1][j - weight[i]] + value[i], dp[i-1][j]);
+            else
+                dp[i][j] = dp[i-1][j];
+        }
+    }
+    
+    int ans =0;
+
+    for(int i=0; i<=m; i++){
+        ans = max(ans, dp[n][i]);
+    }
+    cout<<ans;
+    return 0;
+}
+
+```
