@@ -1074,3 +1074,45 @@ int main() {
     return 0;
 }
 ```
+
+# 문제
+https://inha.codetree.ai/missions/2/problems/max-of-partial-sum/submissions
+# 풀이
+초기 dp 배열을 설정해주고 점화식을 이용해서 업데이트해준다.
+# 코드
+```
+#include <iostream>
+#include <climits>
+#include <algorithm>
+using namespace std;
+
+#define MAX 100001
+int n;
+int arr[MAX];
+int dp[MAX];
+
+void Initialize() {
+    for(int i=2; i<=n; i++){
+        dp[i] = INT_MIN;
+    }
+    dp[1] = arr[1];
+}
+
+int main() {
+    cin>>n;
+    for(int i=1; i<=n; i++){
+        cin>>arr[i];
+    }
+
+    Initialize();
+
+    for(int i=2; i<=n; i++){
+        dp[i] = max(dp[i-1] + arr[i], arr[i]);
+    }
+
+    sort(dp+1, dp+n+1);
+
+    cout<<dp[n];
+    return 0;
+}
+```
