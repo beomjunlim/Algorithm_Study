@@ -241,7 +241,7 @@ int main() {
 # 문제
 https://inha.codetree.ai/missions/6/problems/implement-quick-sort/submissions
 # 풀이
-피봇을 하나 정해두고 피봇을 기준으로 큰 값 작은 값을 교환하며 정렬한다.
+피봇을 하나 정해두고 피봇을 기준으로 큰 값 작은 값을 교환하며 정렬한 값 앞 뒤로 배열을 나누어 계산을 반복한다.
 # 코드
 ```
 #include <iostream>
