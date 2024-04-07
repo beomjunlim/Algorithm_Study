@@ -60,11 +60,13 @@ int main()
 
   cin >> n >> m;
 
-  for (int i = 1; i <= n; i++)
+  for (int i = 0; i < n; i++)
   {
-    for (int j = 1; j <= m; j++)
+    string s;
+    cin >> s;
+    for (int j = 0; j < m; j++)
     {
-      scanf("%1d", &arr[i][j]);
+      arr[i + 1][j + 1] = s[j] - '0';
     }
   }
 
