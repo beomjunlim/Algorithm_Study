@@ -6,7 +6,6 @@ using namespace std;
 int n;
 int ans = 0;
 bool visited[10001];
-// int map[10001][10001];
 
 vector<pair<int, int>> map[10001];
 
