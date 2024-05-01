@@ -18,7 +18,7 @@ void dfs(int x, int y)
 
   if (map[x][y] == 3)
   {
-    true;
+    sw = true;
     return;
   }
 
