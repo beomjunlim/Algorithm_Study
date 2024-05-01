@@ -60,7 +60,6 @@ int main()
     {
       for (int i = 0; i <= 8 - n; i++)
       {
-
         int start_idx = i;
         int end_idx = n + i - 1;
         cnt_column(k, start_idx, end_idx);
