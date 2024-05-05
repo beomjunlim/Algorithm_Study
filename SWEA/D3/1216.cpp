@@ -71,6 +71,8 @@ int main()
         {
           cnt_low(i, j, k);
           cnt_column(i, j, k);
+          if (ans != 0)
+            break;
         }
       }
     }
