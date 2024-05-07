@@ -61,7 +61,16 @@ int main()
     {
       for (int j = 0; j < n; j++)
       {
-        bfs(i, j);
+        int result = dfs(i, j);
+        if (result > ans_num)
+        {
+          ans_start = arr[i][j];
+          ans_num = result;
+        }
+        else if (result == ans_num)
+        {
+          ans_start = min(ans_start, arr[i][j]);
+        }
       }
     }
 
