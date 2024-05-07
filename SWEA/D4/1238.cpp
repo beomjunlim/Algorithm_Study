@@ -39,6 +39,12 @@ int main()
     int n, start;
     cin >> n >> start;
 
+    for (int i = 1; i < 101; i++)
+    {
+      arr[i].clear();
+      cnt[i] = 0;
+    }
+
     for (int i = 0; i < n / 2; i++)
     {
       int a, b;
