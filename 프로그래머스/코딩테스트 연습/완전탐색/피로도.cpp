@@ -4,25 +4,39 @@
 #include <algorithm>
 
 using namespace std;
+bool visited[10];
+int arr[10];
+int answer = -1;
+
+void backtracking(int cnt, vector<vector<int>> dungeons, int k){
+    if(cnt==dungeons.size()){
+        int tmp = 0;
+        for(int i=0; i<cnt; i++){
+            int start = dungeons[arr[i]][0];
+            int minus = dungeons[arr[i]][1];
+            
+            if(k>=start){
+                tmp++;
+                k -= minus;
+            }
+            else
+                break;
+        }
+        answer = max(answer, tmp);
+        return;
+    }
+    
+    for(int i=0; i<dungeons.size(); i++){
+        if(!visited[i]){
+            visited[i] = true;
+            arr[cnt] = i;
+            backtracking(cnt+1, dungeons, k);
+            visited[i] = false;
+        }
+    }
+}
 
 int solution(int k, vector<vector<int>> dungeons) {
-    sort(dungeons.begin(), dungeons.end());
-    
-    int answer = -1;
-    do {
-        int gauge = k;
-        int sum = 0;
-        for(auto & it : dungeons){
-            if(gauge>=it[0]){
-                gauge -= it[1];
-                sum += 1;
-            }
-        }
-        answer = max (answer, sum);
-    } while(next_permutation(dungeons.begin(), dungeons.end()));
-
-    if(answer == 0)
-        answer = -1;
-    
+    backtracking(0,dungeons, k);
     return answer;
 }
